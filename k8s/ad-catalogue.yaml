@@ -13,20 +13,22 @@ spec:
         app: ad-catalogue
     spec:
       containers:
-        - image: meshetr/ad-catalogue:v0.16
+        - image: meshetr/ad-catalogue:v0.17
           name: ad-catalogue
           ports:
             - containerPort: 8080
               name: server
               protocol: TCP
           readinessProbe:
-            tcpSocket:
-              port: 8080
+            httpGet:
+              path: /actuator/health
+              port: liveness-port
             initialDelaySeconds: 5
             periodSeconds: 10
-          livenessProbe:
-            tcpSocket:
-              port: 8080
+          livenessProbe: /actuator/health
+            httpGet:
+              path: /healthz
+              port: liveness-port
             initialDelaySeconds: 15
             periodSeconds: 20
           env:
