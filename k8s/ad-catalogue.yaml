@@ -13,7 +13,7 @@ spec:
         app: ad-catalogue
     spec:
       containers:
-        - image: meshetr/ad-catalogue:v0.18
+        - image: meshetr/ad-catalogue:v0.19
           name: ad-catalogue
           ports:
             - containerPort: 8080

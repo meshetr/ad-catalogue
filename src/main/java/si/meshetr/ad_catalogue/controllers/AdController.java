@@ -1,10 +1,13 @@
 package si.meshetr.ad_catalogue.controllers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import si.meshetr.ad_catalogue.AdCatalogueApplication;
 import si.meshetr.ad_catalogue.models.AdExtended;
 import si.meshetr.ad_catalogue.models.AdModel;
 import si.meshetr.ad_catalogue.models.Photo;
@@ -23,13 +26,17 @@ public class AdController {
     @Autowired
     private PhotoRepository photoRepository;
 
+    static final Logger logger = LogManager.getLogger(AdCatalogueApplication.class.getName());
+
     @GetMapping("catalogue/api/v1/ads")
     public List<AdModel> returnsFirst10(){
+        logger.info("General ads requested.");
         return adRepository.findAll(PageRequest.of(0,10, Sort.by("idAd"))).toList();
     }
 
     @GetMapping("catalogue/api/v1/ad/{id}")
     public AdExtended returnSpecificAd(@PathVariable("id") long id){
+        logger.info(String.format("Ad (id: %s) requested.", id+""));
 
         Optional<AdModel> res = adRepository.findById(id);
 
