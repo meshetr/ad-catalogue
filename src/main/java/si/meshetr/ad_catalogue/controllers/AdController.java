@@ -31,9 +31,9 @@ public class AdController {
 
     @CrossOrigin
     @GetMapping("catalogue/api/v1/ads")
-    public List<AdModel> returnsFirst10(){
+    public List<AdModel> returnsFirst30(){
         logger.info("General ads requested.");
-        return adRepository.findAll(PageRequest.of(0,10, Sort.by("idAd"))).toList();
+        return adRepository.findAll(PageRequest.of(0,30, Sort.by("idAd").descending())).toList();
     }
 
     @CrossOrigin
