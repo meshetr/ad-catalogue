@@ -11,10 +11,6 @@ import si.meshetr.ad_catalogue.models.Photo;
 import si.meshetr.ad_catalogue.repos.AdRepository;
 import si.meshetr.ad_catalogue.repos.PhotoRepository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,12 +23,12 @@ public class AdController {
     @Autowired
     private PhotoRepository photoRepository;
 
-    @GetMapping("/api/v1/ads")
+    @GetMapping("catalogue/api/v1/ads")
     public List<AdModel> returnsFirst10(){
         return adRepository.findAll(PageRequest.of(0,10, Sort.by("idAd"))).toList();
     }
 
-    @GetMapping("/api/v1/ad/{id}")
+    @GetMapping("catalogue/api/v1/ad/{id}")
     public AdExtended returnSpecificAd(@PathVariable("id") long id){
 
         Optional<AdModel> res = adRepository.findById(id);
