@@ -25,9 +25,9 @@ spec:
               port: liveness-port
             initialDelaySeconds: 5
             periodSeconds: 10
-          livenessProbe: /actuator/health
+          livenessProbe:
             httpGet:
-              path: /healthz
+              path: /actuator/health
               port: liveness-port
             initialDelaySeconds: 15
             periodSeconds: 20
