@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Appenders>
-        <Socket name="Socket" host="${LOG_URL}" port="17759" protocol="UDP">
+        <Socket name="Socket" host="ca4ac19f-0058-442d-89da-c59f0a5c8441-ls.logit.io" port="17759" protocol="UDP">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-6level %logger{36} - %msg%n"/>
         </Socket>
         <Console name="Console" target="SYSTEM_OUT">
