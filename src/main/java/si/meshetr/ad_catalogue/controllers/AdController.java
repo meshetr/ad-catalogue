@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,12 +29,14 @@ public class AdController {
 
     static final Logger logger = LogManager.getLogger(AdCatalogueApplication.class.getName());
 
+    @CrossOrigin
     @GetMapping("catalogue/api/v1/ads")
     public List<AdModel> returnsFirst10(){
         logger.info("General ads requested.");
         return adRepository.findAll(PageRequest.of(0,10, Sort.by("idAd"))).toList();
     }
 
+    @CrossOrigin
     @GetMapping("catalogue/api/v1/ad/{id}")
     public AdExtended returnSpecificAd(@PathVariable("id") long id){
         logger.info(String.format("Ad (id: %s) requested.", id+""));
