@@ -10,32 +10,32 @@ import java.time.LocalDateTime;
 @Table(name="t_ad")
 public class AdModel {
     @Id
-    private int idAd;
+    Long idAd;
 
     @Column
-    private String idUser;
+    String idUser;
 
     @Column
-    private String title;
+    String title;
 
     @Column
-    private String description;
+    String description;
 
     @Column
-    private double price;
+    double price;
 
     @Column
-    private LocalDateTime createdAt;
+    LocalDateTime createdAt;
 
     @Column
-    private LocalDateTime updatedAt;
+    LocalDateTime updatedAt;
 
 
     public AdModel() {
         super();
     }
 
-    public AdModel(int idAd, String idUser, String title, String description, double price, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public AdModel(long idAd, String idUser, String title, String description, double price, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.idAd = idAd;
         this.idUser = idUser;
         this.title = title;
@@ -45,11 +45,11 @@ public class AdModel {
         this.updatedAt = updatedAt;
     }
 
-    public int getIdAd() {
+    public Long getIdAd() {
         return idAd;
     }
 
-    public void setIdAd(int idAd) {
+    public void setIdAd(Long idAd) {
         this.idAd = idAd;
     }
 
