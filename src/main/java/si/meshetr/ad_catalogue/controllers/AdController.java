@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
-import si.meshetr.ad_catalogue.AdCatalogueApplication;
 import si.meshetr.ad_catalogue.models.AdExtended;
 import si.meshetr.ad_catalogue.models.AdModel;
 import si.meshetr.ad_catalogue.models.Photo;
@@ -24,7 +23,7 @@ public class AdController {
     @Autowired
     private PhotoRepository photoRepository;
 
-    static final Logger logger = LogManager.getLogger(AdCatalogueApplication.class.getName());
+    static final Logger logger = LogManager.getLogger("CONSOLE_JSON_APPENDER");
 
 
     @CrossOrigin
@@ -39,6 +38,7 @@ public class AdController {
     @PostMapping(path="/catalogue/api/v1/ad/", consumes = "application/json", produces = "application/json")
     public void postAd(AdModel adModel){
         logger.info(String.format("New ad added. " + adModel.toString()));
+        adRepository.save(adModel);
     }
 
 
@@ -66,7 +66,9 @@ public class AdController {
 
     @CrossOrigin
     @PutMapping("/catalogue/api/v1/ad/{id}")
-    AdModel replaceEmployee(@RequestBody AdModel newAdModel, @PathVariable Long id) {
+    AdModel replaceAd(@RequestBody AdModel newAdModel, @PathVariable Long id) {
+
+        logger.info(String.format("Ad (id: %s) updated.", id+""));
 
         return adRepository.findById(id)
                 .map(adModel -> {
@@ -85,7 +87,10 @@ public class AdController {
 
     @CrossOrigin
     @DeleteMapping("/catalogue/api/v1/ad/{id}")
-    void deleteEmployee(@PathVariable Long id) {
+    void deleteAd(@PathVariable Long id) {
+
+        logger.info(String.format("Ad (id: %s) deleted.", id+""));
+
         adRepository.deleteById(id);
     }
 }
